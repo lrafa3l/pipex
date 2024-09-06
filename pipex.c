@@ -24,9 +24,9 @@ static void	ft_execute(char *cmd[])
 
 	pathname = ft_strjoin("/bin/", cmd[0]);
 	if (!pathname)
-		ft_printf_error("path not found.");
+		ft_print_error("path not found.");
 	if (execve(pathname, cmd, NULL) < 0)
-		ft_printf_error("execve failed");
+		ft_print_error("execve failed");
 }
 
 static void	ft_child_process(char **argv, int *fd)
@@ -36,12 +36,12 @@ static void	ft_child_process(char **argv, int *fd)
 
 	file_in = open(argv[1], O_RDONLY, 0644);
 	if (file_in < 0)
-		ft_printf_error("input file failed.");
+		ft_print_error("input file failed.");
 	if (dup2(fd[1], STDOUT_FILENO) < 0 || dup2(file_in, STDIN_FILENO) < 0)
-		ft_printf_error("dup2 failed");
+		ft_print_error("dup2 failed");
 	arg = ft_split(argv[2], ' ');
 	if (!arg)
-		ft_printf_error("command not found.");
+		ft_print_error("command not found.");
 	close(file_in);
 	close(fd[0]);
 	close(fd[1]);
@@ -55,12 +55,12 @@ static void	ft_parent_process(char **argv, int *fd)
 
 	file_out = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (file_out < 0)
-		ft_printf_error("output file failed.");
+		ft_print_error("output file failed.");
 	if (dup2(fd[0], STDIN_FILENO) < 0 || dup2(file_out, STDOUT_FILENO) < 0)
-		ft_printf_error("dup2 failed");
+		ft_print_error("dup2 failed");
 	arg = ft_split(argv[3], ' ');
 	if (!arg)
-		ft_printf_error("command not found.");
+		ft_print_error("command not found.");
 	close(file_out);
 	close(fd[0]);
 	close(fd[1]);
@@ -75,10 +75,10 @@ int	main(int argc, char **argv)
 	if (argc == 5 && argv[1][0] && argv[2][0] && argv[3][0] && argv[4][0])
 	{
 		if (pipe(fd) < 0)
-			ft_printf_error("pipe failed.");
+			ft_print_error("pipe failed.");
 		pid = fork();
 		if (pid < 0)
-			ft_printf_error("fork failed.");
+			ft_print_error("fork failed.");
 		if (pid == 0)
 			ft_child_process(argv, fd);
 		waitpid(pid, NULL, 0);
