@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_words.c                                   :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrafael <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/12 11:56:52 by lrafael           #+#    #+#             */
-/*   Updated: 2024/07/15 06:55:52 by lrafael          ###   ########.fr       */
+/*   Created: 2024/05/24 14:09:40 by lrafael           #+#    #+#             */
+/*   Updated: 2024/05/25 07:58:55 by lrafael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_count_words(char *s)
-{
-	int	i;
-	int	count;
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-	i = 0;
-	count = 0;
-	while (s[i])
-	{
-		if ((s[i] >= 33 && s[i] <= 126) && (s[i + 1] == 32 || s[i + 1] == '\0'
-				|| (s[i + 1] >= 9 && s[i + 1] <= 13)))
-			count++;
-		i++;
-	}
-	return (count);
-}
+# include <unistd.h>
+# include <stdlib.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
+size_t	ft_strlen_get(char *s);
+
+char	*get_next_line(int fd);
+char	*ft_strjoin_get(char *s1, char *s2);
+char	*ft_strchr_get(char *s, int c);
+
+#endif

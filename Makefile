@@ -6,7 +6,7 @@
 #    By: lrafael <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/21 08:12:32 by lrafael           #+#    #+#              #
-#    Updated: 2024/07/15 12:36:46 by lrafael          ###   ########.fr        #
+#    Updated: 2024/09/06 06:47:05 by lrafael          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,9 @@ all: ${NAME}
 
 ${NAME}: ${OBJS}
 	@echo "\n\t\t\033[34m\033[1m*** Compiling ***\033[0m \n"
-	@make re -C ./libft
+	@make -s -C ./libft
 	@$(CC) ${OBJS} -Llibft -lft -o ${NAME}
-	@printf "\033c"
+	@echo "\033c"
 	@echo "\n\t\t\033[92m\033[1m ~ Pipex Compiled! ~ \n"
 
 n:
@@ -39,13 +39,13 @@ n:
 clean:
 	@make clean -C ./libft
 	@rm -f ${OBJS}
-	@printf "\033c"
+	@echo "\033c"
 	@echo "\n\t\t\033[31m\033[1mDeleted! \n"
 
 fclean: clean
 	@make fclean -C ./libft
 	@rm -f ${NAME}
-	@printf "\033c"
+	@echo "\033c"
 	@echo "\n\t\t\033[31m\033[1mEverything Deleted! \n"
 
 re: fclean all

@@ -47,7 +47,11 @@ SRCS = 	ft_isalpha.c	\
 	ft_putstr_fd.c 		\
 	ft_putendl_fd.c 	\
 	ft_putnbr_fd.c		\
-	ft_count_words.c
+	get_next_line/get_next_line.c	\
+	get_next_line/get_next_line_utils.c \
+	ft_printf/ft_printf.c	\
+	ft_printf/ft_printf_utils.c	\
+	ft_printf/ft_printf_helper.c
 
 BONUS = ft_lstnew.c 	\
 	ft_lstadd_front.c 	\
@@ -65,21 +69,30 @@ BONUS_OBJ = $(BONUS:.c=.o)
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@make -s -C ft_printf
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@echo "\033c"
+	@echo "\n\t\t\033[92m\033[1m >> Libft Created <<\033[0m\n"
 
 bonus: $(BONUS_OBJ)
-	ar rc $(NAME) $(BONUS_OBJ)
-	ranlib $(NAME)
+	@ar rc $(NAME) $(BONUS_OBJ)
+	@ranlib $(NAME)
 
 clean:
-	/bin/rm -f $(OBJ) $(BONUS_OBJ)
+	@make clean -s -C ft_printf
+	@/bin/rm -f $(OBJ) $(BONUS_OBJ)
+	@echo "\033c"
+	@echo "\n\t\t\033[31m\033[1m >> Erased <<\033[0m \n"
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@make fclean -s -C ft_printf
+	@/bin/rm -f $(NAME)
+	@echo "\033c"
+	@echo "\n\t\t\033[31m\033[1m >> Everything Deleted! <<\033[0m\n"
 
 re: fclean all
 
