@@ -9,6 +9,7 @@
 /*   Updated: 2024/08/22 16:45:10 by lrafael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 
@@ -17,6 +18,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/wait.h>
 # include <unistd.h>
 
 # define RESET "\033[0m"
@@ -27,7 +29,6 @@
 # define BLUE "\033[34m"
 # define MAGENTA "\033[35m"
 # define CYAN "\033[36m"
-# define WHITE "\033[37m"
 
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
