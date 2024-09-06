@@ -14,8 +14,7 @@
 /* Function that will print the error. */
 static void	error(const char *msg)
 {
-	fprintf(stderr, "\033[31m\033[1mError:\033[0m %s: %s\n", msg,
-		strerror(errno));
+	ft_printf("%sError:%s %s\n", RED, RESET, msg);
 	exit(EXIT_FAILURE);
 }
 
