@@ -26,7 +26,7 @@ static void	ft_execute(char *cmd[])
 	if (!pathname)
 		ft_print_error("path not found.");
 	if (execve(pathname, cmd, NULL) < 0)
-		ft_print_error("execve failed");
+		ft_print_error("execve failed.");
 }
 
 static void	ft_child_process(char **argv, int *fd)
@@ -38,7 +38,7 @@ static void	ft_child_process(char **argv, int *fd)
 	if (file_in < 0)
 		ft_print_error("input file failed.");
 	if (dup2(fd[1], STDOUT_FILENO) < 0 || dup2(file_in, STDIN_FILENO) < 0)
-		ft_print_error("dup2 failed");
+		ft_print_error("dup2 failed.");
 	arg = ft_split(argv[2], ' ');
 	if (!arg)
 		ft_print_error("command not found.");
@@ -57,7 +57,7 @@ static void	ft_parent_process(char **argv, int *fd)
 	if (file_out < 0)
 		ft_print_error("output file failed.");
 	if (dup2(fd[0], STDIN_FILENO) < 0 || dup2(file_out, STDOUT_FILENO) < 0)
-		ft_print_error("dup2 failed");
+		ft_print_error("dup2 failed.");
 	arg = ft_split(argv[3], ' ');
 	if (!arg)
 		ft_print_error("command not found.");
